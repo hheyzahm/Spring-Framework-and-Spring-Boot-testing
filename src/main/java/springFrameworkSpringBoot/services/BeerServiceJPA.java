@@ -10,7 +10,6 @@ import springFrameworkSpringBoot.entities.BeerEntity;
 import springFrameworkSpringBoot.mappers.BeerMapper;
 import springFrameworkSpringBoot.repositories.BeerRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,7 +33,7 @@ public class BeerServiceJPA implements BeerService {
     private final BeerMapper beerMapper;
 
     @Override
-    public List<BeerDTO> listBeers(String beerName, BeerStyle beerStyle) {
+    public List<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory, Integer pageNumber, Integer pageSize) {
 
         List<BeerEntity> beerList;
 
@@ -42,14 +41,23 @@ public class BeerServiceJPA implements BeerService {
             beerList = listBeersByName(beerName);
         } else if (!StringUtils.hasText(beerName) && beerStyle != null){
             beerList = listBeersByStyle(beerStyle);
+        } else if (StringUtils.hasText(beerName) && beerStyle != null){
+            beerList= listBeersByNameAndStyle(beerName,beerStyle);
         } else {
             beerList = beerRepository.findAll();
         }
-
+        if(showInventory != null && !showInventory )
+        {
+            beerList.forEach(beerEntity -> beerEntity.setQuantityOnHand(null));
+        }
         return beerList.stream()
                 .map(beerMapper::beerEntityToBeerDTO)
                 .collect(Collectors.toList());
     }
+
+    private List<BeerEntity> listBeersByNameAndStyle(String beerName, BeerStyle beerStyle) {
+
+   return beerRepository.findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle("%" + beerName + "%",beerStyle); }
 
     public List<BeerEntity> listBeersByStyle(BeerStyle beerStyle) {
         return beerRepository.findAllByBeerStyle(beerStyle);
