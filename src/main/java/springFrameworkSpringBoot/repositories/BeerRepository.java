@@ -1,10 +1,11 @@
 package springFrameworkSpringBoot.repositories;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import springFrameworkSpringBoot.Model.BeerStyle;
 import springFrameworkSpringBoot.entities.BeerEntity;
 
-import java.util.List;
+import java.awt.print.Pageable;
 import java.util.UUID;
 
 /**
@@ -13,8 +14,9 @@ import java.util.UUID;
  */
 public interface BeerRepository extends JpaRepository<BeerEntity, UUID> {
 
-List<BeerEntity> findAllByBeerNameIsLikeIgnoreCase(String beerName);
-    List<BeerEntity> findAllByBeerStyle(BeerStyle beerStyle);
+    Page<BeerEntity> findAllByBeerNameIsLikeIgnoreCase(String beerName, Pageable pageable);
 
-    List<BeerEntity> findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle(String beerName,BeerStyle beerStyle);
+    Page<BeerEntity> findAllByBeerStyle(BeerStyle beerStyle, Pageable pageable);
+
+    Page<BeerEntity> findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle(String beerName, BeerStyle beerStyle, Pageable pageable);
 }

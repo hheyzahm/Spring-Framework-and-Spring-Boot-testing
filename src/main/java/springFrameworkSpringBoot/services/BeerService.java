@@ -2,10 +2,10 @@ package springFrameworkSpringBoot.services;
 
 
 
+import org.springframework.data.domain.Page;
 import springFrameworkSpringBoot.Model.BeerDTO;
 import springFrameworkSpringBoot.Model.BeerStyle;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,7 +14,7 @@ import java.util.UUID;
  * @Author Hazeem Hassan
  */
 public interface BeerService {
-    List<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory, Integer pageNumber, Integer pageSize);
+    Page<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory, Integer pageNumber, Integer pageSize);
 
     Optional<BeerDTO> getBeerById(UUID id);
 

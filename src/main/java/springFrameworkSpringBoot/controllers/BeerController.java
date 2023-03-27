@@ -3,6 +3,7 @@ package springFrameworkSpringBoot.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,6 @@ import springFrameworkSpringBoot.Model.BeerDTO;
 import springFrameworkSpringBoot.Model.BeerStyle;
 import springFrameworkSpringBoot.services.BeerService;
 
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -70,7 +70,7 @@ public class BeerController {
     }
 
     @GetMapping(value = BEER_PATH)
-    public List<BeerDTO> listBeers(@RequestParam(required = false) String beerName,
+    public Page<BeerDTO> listBeers(@RequestParam(required = false) String beerName,
                                    @RequestParam(required = false) BeerStyle beerStyle,
                                    @RequestParam(required = false) Boolean showInventory, Integer pageNumber, Integer pageSize){
         return beerService.listBeers(beerName, beerStyle,showInventory, 1, 25);
