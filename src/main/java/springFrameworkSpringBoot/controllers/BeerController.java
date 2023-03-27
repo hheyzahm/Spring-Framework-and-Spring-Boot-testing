@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import springFrameworkSpringBoot.Model.BeerDTO;
+import springFrameworkSpringBoot.Model.BeerStyle;
 import springFrameworkSpringBoot.services.BeerService;
 
 import java.util.List;
@@ -69,10 +70,10 @@ public class BeerController {
     }
 
     @GetMapping(value = BEER_PATH)
-    public List<BeerDTO> listBeers(){
-        return beerService.listBeers(null);
+    public List<BeerDTO> listBeers(@RequestParam(required = false) String beerName,
+                                   @RequestParam(required = false) BeerStyle beerStyle){
+        return beerService.listBeers(beerName, beerStyle);
     }
-
 
     @GetMapping(value = BEER_PATH_ID)
     public BeerDTO getBeerById(@PathVariable("beerId") UUID beerId){
