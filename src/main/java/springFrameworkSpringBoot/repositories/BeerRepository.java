@@ -3,6 +3,7 @@ package springFrameworkSpringBoot.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import springFrameworkSpringBoot.entities.BeerEntity;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -10,4 +11,8 @@ import java.util.UUID;
  * @Author Hazeem Hassan
  */
 public interface BeerRepository extends JpaRepository<BeerEntity, UUID> {
+
+List<BeerEntity> findAllByBeerNameIsLikeIgnoreCase(String beerName);
+
+
 }
