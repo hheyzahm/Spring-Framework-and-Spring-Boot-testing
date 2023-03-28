@@ -42,6 +42,4 @@ public class CustomerEntity {
     @Builder.Default
     @OneToMany(mappedBy = "customer")
     private Set<BeerOrder> beerOrders = new HashSet<>();
-
-
 }

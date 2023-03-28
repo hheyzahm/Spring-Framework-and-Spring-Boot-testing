@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import springFrameworkSpringBoot.entities.BeerEntity;
 import springFrameworkSpringBoot.entities.BeerOrder;
+import springFrameworkSpringBoot.entities.BeerOrderShipment;
 import springFrameworkSpringBoot.entities.CustomerEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,10 +43,15 @@ class BeerOrderRepositoryTest {
         BeerOrder beerOrder = BeerOrder.builder()
                 .customerRef("Test order")
                 .customer(testCustomer)
+                .beerOrderShipment(BeerOrderShipment.builder()
+                        .trackingNumber("1235r")
+                        .build())
                 .build();
 
         BeerOrder savedBeerOrder = beerOrderRepository.save(beerOrder);
 
+
+        System.out.println(savedBeerOrder.getCustomerRef());
 
         System.out.println(savedBeerOrder.getCustomerRef());
     }
