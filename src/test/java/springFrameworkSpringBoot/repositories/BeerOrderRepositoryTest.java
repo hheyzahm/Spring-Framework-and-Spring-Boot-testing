@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import springFrameworkSpringBoot.entities.BeerEntity;
+import springFrameworkSpringBoot.entities.BeerOrder;
 import springFrameworkSpringBoot.entities.CustomerEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,5 +38,15 @@ class BeerOrderRepositoryTest {
         System.out.println(beerRepository.count());
         System.out.println(testCustomer.getName());
         System.out.println(testBeer.getBeerName());
+
+        BeerOrder beerOrder = BeerOrder.builder()
+                .customerRef("Test order")
+                .customer(testCustomer)
+                .build();
+
+        BeerOrder savedBeerOrder = beerOrderRepository.saveAndFlush(beerOrder);
+
+
+        System.out.println(savedBeerOrder.getCustomerRef());
     }
 }
