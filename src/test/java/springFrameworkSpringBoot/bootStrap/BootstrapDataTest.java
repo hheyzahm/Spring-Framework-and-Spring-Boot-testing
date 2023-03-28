@@ -29,7 +29,7 @@ class BootstrapDataTest {
 
     @BeforeEach
     void setUp() {
-        bootstrapData = new BootstrapData(csvService, beerRepository, customerRepository);
+        bootstrapData = new BootstrapData(beerRepository, customerRepository, csvService);
     }
 
     @Test

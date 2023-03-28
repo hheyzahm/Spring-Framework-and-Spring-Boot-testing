@@ -29,20 +29,21 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class BootstrapData implements CommandLineRunner {
-    private final BeerCsvService beerCsvService;
     private final BeerRepository beerRepository;
     private final CustomerRepository customerRepository;
+    private final BeerCsvService beerCsvService;
+
     @Transactional
     @Override
     public void run(String... args) throws Exception {
         loadBeerData();
+        //loadCsvData();
         loadCustomerData();
-        loadCsvData();
     }
 
     private void loadCsvData() throws FileNotFoundException {
         if (beerRepository.count() < 10){
-            File file = ResourceUtils.getFile("classpath:csvData/beers.csv");
+            File file = ResourceUtils.getFile("classpath:csvdata/beers.csv");
 
             List<BeerCSVRecord> recs = beerCsvService.convertCSV(file);
 
@@ -64,7 +65,7 @@ public class BootstrapData implements CommandLineRunner {
                         .beerName(StringUtils.abbreviate(beerCSVRecord.getBeer(), 50))
                         .beerStyle(beerStyle)
                         .price(BigDecimal.TEN)
-                        .upc(beerCSVRecord.getId().toString())
+                        .upc(beerCSVRecord.getRow().toString())
                         .quantityOnHand(beerCSVRecord.getCount())
                         .build());
             });
@@ -141,6 +142,7 @@ public class BootstrapData implements CommandLineRunner {
         }
 
     }
+
 
 
 }
