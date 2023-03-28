@@ -16,13 +16,11 @@ import springFrameworkSpringBoot.services.BeerService;
 import java.util.UUID;
 
 /**
- * @Created 17 03 2023 - 5:05 PM
- * @Author Hazeem Hassan
+ * Created by jt, Spring Framework Guru.
  */
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-//@RequestMapping("/api/v1/MockMVC/beer/")
 public class BeerController {
 
     public static final String BEER_PATH = "/api/v1/beer";
@@ -72,9 +70,12 @@ public class BeerController {
     @GetMapping(value = BEER_PATH)
     public Page<BeerDTO> listBeers(@RequestParam(required = false) String beerName,
                                    @RequestParam(required = false) BeerStyle beerStyle,
-                                   @RequestParam(required = false) Boolean showInventory, Integer pageNumber, Integer pageSize){
-        return beerService.listBeers(beerName, beerStyle,showInventory, 1, 25);
+                                   @RequestParam(required = false) Boolean showInventory,
+                                   @RequestParam(required = false) Integer pageNumber,
+                                   @RequestParam(required = false) Integer pageSize){
+        return beerService.listBeers(beerName, beerStyle, showInventory, pageNumber, pageSize);
     }
+
 
     @GetMapping(value = BEER_PATH_ID)
     public BeerDTO getBeerById(@PathVariable("beerId") UUID beerId){

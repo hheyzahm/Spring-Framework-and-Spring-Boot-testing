@@ -4,8 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import springFrameworkSpringBoot.Model.BeerStyle;
 import springFrameworkSpringBoot.entities.BeerEntity;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.UUID;
 
 /**
