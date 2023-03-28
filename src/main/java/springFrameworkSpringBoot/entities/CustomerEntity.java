@@ -21,6 +21,7 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "customer")
 public class CustomerEntity {
     @Id
     @GeneratedValue(generator = "UUID")
