@@ -1,62 +1,60 @@
 package springFrameworkSpringBoot.Model;
 
+import com.opencsv.bean.CsvBindByName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 /**
  * @Created 27 03 2023 - 11:00 AM
  * @Author Hazeem Hassan
  */
 
-import com.opencsv.bean.CsvBindByName;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BeerCSVRecord {
-    @CsvBindByName(column = "")
+
+    @CsvBindByName
     private Integer row;
 
     @CsvBindByName(column = "count.x")
     private Integer count;
 
-    @CsvBindByName(column = "abv")
+    @CsvBindByName
     private String abv;
 
-    @CsvBindByName(column = "ibu")
+    @CsvBindByName
     private String ibu;
 
-    @CsvBindByName(column = "id")
+    @CsvBindByName
     private Integer id;
 
-    @CsvBindByName(column = "beer")
+    @CsvBindByName
     private String beer;
 
-    @CsvBindByName(column = "style")
+    @CsvBindByName
     private String style;
 
     @CsvBindByName(column = "brewery_id")
     private Integer breweryId;
 
-    @CsvBindByName(column = "ounces")
+    @CsvBindByName
     private Float ounces;
 
-    @CsvBindByName(column = "style2")
+    @CsvBindByName
     private String style2;
 
     @CsvBindByName(column = "count.y")
     private String count_y;
 
-    @CsvBindByName(column = "brewery")
-    private String brewery;
-
-    @CsvBindByName(column = "city")
+    @CsvBindByName
     private String city;
 
-    @CsvBindByName(column = "state")
+    @CsvBindByName
     private String state;
 
-    @CsvBindByName(column = "label")
+    @CsvBindByName
     private String label;
 
 }

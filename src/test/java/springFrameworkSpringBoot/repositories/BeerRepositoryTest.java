@@ -12,7 +12,6 @@ import springFrameworkSpringBoot.entities.BeerEntity;
 import springFrameworkSpringBoot.services.BeerCsvServiceImpl;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -26,7 +25,7 @@ class BeerRepositoryTest {
 
     @Test
     void testGetBeerListByName() {
-        Page<BeerEntity> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%", null);
+    Page<BeerEntity> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%", null);
 
         assertThat(list.getContent().size()).isEqualTo(336);
     }

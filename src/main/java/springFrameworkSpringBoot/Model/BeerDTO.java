@@ -4,8 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,8 +13,8 @@ import java.util.UUID;
  * @Created 17 03 2023 - 4:54 PM
  * @Author Hazeem Hassan
  */
-@Data
 @Builder
+@Data
 public class BeerDTO {
     private UUID id;
     private Integer version;
@@ -35,10 +33,9 @@ public class BeerDTO {
 
     @NotNull
     private BigDecimal price;
-    @CreationTimestamp
     private LocalDateTime createdDate;
-    @UpdateTimestamp
     private LocalDateTime updateDate;
+
 
     /*BeerDTOS10(UUID id, Integer version, String beerName, BeerStyleS10 beerStyleS10, String upc, Integer quantityOnHand, BigDecimal price, LocalDateTime createdDate, LocalDateTime updateDate) {
         this.id = id;

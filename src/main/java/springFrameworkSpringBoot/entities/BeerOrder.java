@@ -20,7 +20,6 @@ import java.util.UUID;
 @Setter
 @Entity
 @NoArgsConstructor
-
 @Builder
 public class BeerOrder {
 
@@ -80,5 +79,6 @@ public class BeerOrder {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private BeerOrderShipment beerOrderShipment;
+
 
 }

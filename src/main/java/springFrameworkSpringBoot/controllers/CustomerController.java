@@ -73,4 +73,5 @@ public class CustomerController {
     public CustomerDTO getCustomerById(@PathVariable("customerId") UUID id){
         return customerService.getCustomerById(id).orElseThrow(NotFoundException::new);
     }
+
 }

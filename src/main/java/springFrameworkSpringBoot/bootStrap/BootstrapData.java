@@ -22,9 +22,9 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+
 /**
- * @Created 22 03 2023 - 5:03 PM
- * @Author Hazeem Hassan
+ * Created by jt, Spring Framework Guru.
  */
 @Component
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class BootstrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         loadBeerData();
-        //loadCsvData();
+        loadCsvData();
         loadCustomerData();
     }
 
@@ -65,7 +65,7 @@ public class BootstrapData implements CommandLineRunner {
                         .beerName(StringUtils.abbreviate(beerCSVRecord.getBeer(), 50))
                         .beerStyle(beerStyle)
                         .price(BigDecimal.TEN)
-                        .upc(beerCSVRecord.getRow().toString())
+                        .upc(beerCSVRecord.getId().toString())
                         .quantityOnHand(beerCSVRecord.getCount())
                         .build());
             });
@@ -142,7 +142,6 @@ public class BootstrapData implements CommandLineRunner {
         }
 
     }
-
 
 
 }

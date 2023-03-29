@@ -18,7 +18,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
-
 /**
  * @Created 20 03 2023 - 12:17 PM
  * @Author Hazeem Hassan
@@ -79,9 +78,10 @@ public class BeerServiceJPA implements BeerService {
                 queryPageSize = pageSize;
             }
         }
-        Sort sort=Sort.by(Sort.Order.asc("beerName"));
 
-        return PageRequest.of(queryPageNumber, queryPageSize,sort);
+        Sort sort = Sort.by(Sort.Order.asc("beerName"));
+
+        return PageRequest.of(queryPageNumber, queryPageSize, sort);
     }
 
     private Page<BeerEntity> listBeersByNameAndStyle(String beerName, BeerStyle beerStyle, Pageable pageable) {

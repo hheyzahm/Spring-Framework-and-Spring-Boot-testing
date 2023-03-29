@@ -11,6 +11,7 @@ import org.hibernate.type.SqlTypes;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+
 /**
  * @Created 28 03 2023 - 5:19 PM
  * @Author Hazeem Hassan

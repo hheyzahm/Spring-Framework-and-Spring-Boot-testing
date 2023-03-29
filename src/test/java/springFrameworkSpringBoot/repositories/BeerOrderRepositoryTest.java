@@ -3,17 +3,16 @@ package springFrameworkSpringBoot.repositories;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import springFrameworkSpringBoot.entities.BeerEntity;
 import springFrameworkSpringBoot.entities.BeerOrder;
 import springFrameworkSpringBoot.entities.BeerOrderShipment;
 import springFrameworkSpringBoot.entities.CustomerEntity;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class BeerOrderRepositoryTest {
+
     @Autowired
     BeerOrderRepository beerOrderRepository;
 
@@ -32,14 +31,9 @@ class BeerOrderRepositoryTest {
         testBeer = beerRepository.findAll().get(0);
     }
 
+    @Transactional
     @Test
     void testBeerOrders() {
-        System.out.println(beerOrderRepository.count());
-        System.out.println(customerRepository.count());
-        System.out.println(beerRepository.count());
-        System.out.println(testCustomer.getName());
-        System.out.println(testBeer.getBeerName());
-
         BeerOrder beerOrder = BeerOrder.builder()
                 .customerRef("Test order")
                 .customer(testCustomer)
@@ -52,7 +46,7 @@ class BeerOrderRepositoryTest {
 
 
         System.out.println(savedBeerOrder.getCustomerRef());
-
-        System.out.println(savedBeerOrder.getCustomerRef());
     }
 }
+
+
