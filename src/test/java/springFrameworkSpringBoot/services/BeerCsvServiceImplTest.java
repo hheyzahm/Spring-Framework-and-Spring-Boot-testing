@@ -1,25 +1,27 @@
 package springFrameworkSpringBoot.services;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import springFrameworkSpringBoot.entities.CustomerEntity;
-import springFrameworkSpringBoot.repositories.CustomerRepository;
+import org.springframework.util.ResourceUtils;
+import springFrameworkSpringBoot.Model.BeerCSVRecord;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
-class CustomerRepositoryTest {
+class BeerCsvServiceImplTest {
 
-    @Autowired
-    CustomerRepository customerRepository;
+    BeerCsvService beerCsvService = new BeerCsvServiceImpl();
 
     @Test
-    void testSaveCustomer() {
-        CustomerEntity customer = customerRepository.save(CustomerEntity.builder()
-                .name("New Name")
-                .build());
+    void convertCSV() throws FileNotFoundException {
 
-        assertThat(customer.getId()).isNotNull();
+        File file = ResourceUtils.getFile("classpath:csvData/beers.csv");
 
+        List<BeerCSVRecord> recs = beerCsvService.convertCSV(file);
+
+        System.out.println(recs.size());
+
+        assertThat(recs.size()).isGreaterThan(0);
     }
 }
